@@ -44,34 +44,42 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
+let playerSelection;
+let computerSelection;
 
-    let playerSelection;
-    let computerSelection;
 
-    for (let i = 0; i < 5; i++) {
+const buttons = document.querySelectorAll('button');
+const result = document.querySelector('#result');
+const playerScoreDiv = document.querySelector('#player-score');
+const computerScoreDiv = document.querySelector('#computer-score');
 
-        playerSelection = prompt(`Round ${i}: What is your move?`);
-        playerSelection = playerSelection.toLowerCase();
-
-        while(!(playerSelection == 'rock' || playerSelection == 'paper' || playerSelection == 'scissors')) {
-            playerSelection = prompt("Not a valid move, try again.");
-        }
-        
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playerSelection = button.id;
         computerSelection = getComputerChoice();
-        
-        console.log(playRound(playerSelection, computerSelection));
-        
-        console.log(`Player: ${playerScore}`);
-        console.log(`Computer: ${computerScore}`);
-    }
+        result.textContent = playRound(playerSelection, computerSelection);
+        playerScoreDiv.textContent = `${playerScore}`;
+        computerScoreDiv.textContent = `${computerScore}`;
+    });
+});
 
-    if (playerScore > computerScore) {
+    /* playerSelection = prompt(`Round ${i}: What is your move?`);
+    playerSelection = playerSelection.toLowerCase(); */
+
+    /* while(!(playerSelection == 'rock' || playerSelection == 'paper' || playerSelection == 'scissors')) {
+        playerSelection = prompt("Not a valid move, try again.");
+    } */
+
+
+        
+
+    
+
+/*     if (playerScore > computerScore) {
         console.log("Congratulations, you won the game!");        
     } else if (playerScore == computerScore) {
         console.log("It's a tie!");
     } else {
         console.log("Too bad, you lost the game!");
     }
-
-}
+ */
